@@ -1,5 +1,5 @@
 <template>
-	<router-view></router-view>
+	<article class="works-editor"></article>
 </template>
 
 <script setup></script>

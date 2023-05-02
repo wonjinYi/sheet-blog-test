@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // 뷰 불러오기 ------------------------------------
-// 공통 뷰
 import NotFoundView from '@/views/NotFoundView.vue';
-import MainView from '@/views/MainView.vue';
+import ViewerView from '@/views/ViewerView.vue';
+import EditorView from '@/views/EditorView.vue';
+import LoginView from '@/views/LoginView.vue';
+
 // 라우터 설정 ------------------------------------
 const routes = [
 	// 공통 뷰
@@ -14,8 +16,18 @@ const routes = [
 	},
 	{
 		path: '/',
-		name: 'Main',
-		component: MainView,
+		name: 'Viewer',
+		component: ViewerView,
+	},
+	{
+		path: '/login',
+		name: 'Login',
+		component: LoginView,
+	},
+	{
+		path: '/edit',
+		name: 'Editor',
+		component: EditorView,
 	},
 ];
 
