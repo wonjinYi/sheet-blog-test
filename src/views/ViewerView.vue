@@ -27,6 +27,8 @@
 			</article>
 		</main>
 		<footer>lee@wonj.in</footer>
+
+		<loading-cover v-if="showLoading"></loading-cover>
 	</div>
 </template>
 
@@ -37,7 +39,12 @@ import ProfileViewer from '@/components/viewer/ProfileViewer.vue';
 import JobViewer from '@/components/viewer/JobViewer.vue';
 import WorksViewer from '@/components/viewer/WorksViewer.vue';
 
+import LoadingCover from '@/components/LoadingCover.vue';
+
 import { getCollection } from '@/assets/firebase.js';
+
+// init
+const showLoading = ref(true);
 
 const profileData = ref(null);
 const jobData = ref(null);
@@ -56,6 +63,7 @@ async function fetchData() {
 
 	const promises = [profile, job, works];
 	await Promise.all(promises);
+	showLoading.value = false;
 }
 
 fetchData();

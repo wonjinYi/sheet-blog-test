@@ -3,6 +3,7 @@
 		<button @click="logout" style="font-size: 32px">
 			로그아웃하고 처음으로
 		</button>
+		<br />
 		<img :src="adminimg" style="max-width: 90%" />
 
 		<main>
@@ -37,6 +38,8 @@
 				</template> -->
 			</article>
 		</main>
+
+		<loading-cover v-if="showLoading"></loading-cover>
 	</div>
 </template>
 
@@ -48,6 +51,8 @@ import adminimg from '@/assets/admin.png';
 
 import ProfileEditor from '@/components/editor/ProfileEditor.vue';
 import JobEditor from '@/components/editor/JobEditor.vue';
+
+import LoadingCover from '@/components/LoadingCover.vue';
 // import WorksEditor from '@/components/editor/WorksEditor.vue';
 
 // logout
@@ -64,6 +69,8 @@ async function logout() {
 
 // rendering
 import { getCollection } from '@/assets/firebase.js';
+
+const showLoading = ref(true);
 
 const profileData = ref(null);
 const jobData = ref(null);
@@ -82,6 +89,7 @@ async function fetchData() {
 
 	const promises = [profile, job, works];
 	await Promise.all(promises);
+	showLoading.value = false;
 }
 
 // init
